@@ -19,11 +19,6 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner) { return; }
         moveAction = InputSystem.actions.FindAction("Move");
     }
-    
-    public override void OnNetworkDespawn()
-    {
-        if (!IsOwner) { return; }
-    }
 
     void Update()
     {

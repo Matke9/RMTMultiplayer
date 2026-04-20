@@ -91,7 +91,9 @@ GameObject:
   - component: {fileID: 2714461626010783990}
   - component: {fileID: 8749565750552258271}
   - component: {fileID: 1527738993997062407}
+  - component: {fileID: 2215827947010952324}
   - component: {fileID: 894497270381351689}
+  - component: {fileID: 5427971393900690169}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -155,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1704522839
+  GlobalObjectIdHash: 2700696487
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -185,6 +187,20 @@ MonoBehaviour:
   rb: {fileID: 2714461626010783990}
   moveSpeed: 5
   turnRate: 90
+--- !u!114 &2215827947010952324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670000270735339369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fd6324f807bf9489ee8a6982741c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAim
+  ShowTopMostFoldoutHeaderGroup: 1
+  turretTransform: {fileID: 3224815473698059956}
 --- !u!114 &894497270381351689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +247,23 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5427971393900690169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670000270735339369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfe80ef5a83e6046a98a4d0c1c6fc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileLauncher
+  ShowTopMostFoldoutHeaderGroup: 1
+  serverProjectilePrefab: {fileID: 950177496776172010, guid: f5323881c546f95448b6e57fbef8fcdf, type: 3}
+  clientProjectilePrefab: {fileID: 9123458269529725830, guid: f153951007f33b84bade2f8b008bb9a3, type: 3}
+  firePoint: {fileID: 6648558545141470259}
+  projectileSpeed: 10
 --- !u!1 &3605368519281567261
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +541,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &8682034846253886815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6648558545141470259}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6648558545141470259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682034846253886815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3126352049091009320}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9160661113868329458
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +601,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6648558545141470259}
   m_Father: {fileID: 3224815473698059956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8303070948326352274
