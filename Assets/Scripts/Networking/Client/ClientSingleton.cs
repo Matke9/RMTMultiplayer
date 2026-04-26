@@ -5,7 +5,7 @@ public class ClientSingleton : MonoBehaviour
 {
     static ClientSingleton instance;
 
-    private ClientGameManager gameManager;
+    public ClientGameManager GameManager {get; private set;}
 
     public static ClientSingleton Instance
     {
@@ -16,7 +16,7 @@ public class ClientSingleton : MonoBehaviour
                 return instance;
             }
 
-            instance = FindObjectOfType<ClientSingleton>();
+            instance = FindFirstObjectByType<ClientSingleton>();
             if (instance == null)
             {
                 Debug.Log("no client singleton instance found");
@@ -32,11 +32,11 @@ public class ClientSingleton : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public async Task CreateClient()
+    public async Task<bool> CreateClient()
     {
-        gameManager = new ClientGameManager();
+        GameManager = new ClientGameManager();
         
-        await gameManager.InitAsync();
+        return await GameManager.InitAsync();
     }
     
     

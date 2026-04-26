@@ -16,7 +16,8 @@ public class HostSingleton : MonoBehaviour
                 return instance;
             }
 
-            instance = FindObjectOfType<HostSingleton>();
+            //instance = FindObjectOfType<HostSingleton>();
+            instance = FindFirstObjectByType<HostSingleton>();
             if (instance == null)
             {
                 Debug.Log("no host singleton instance found");
