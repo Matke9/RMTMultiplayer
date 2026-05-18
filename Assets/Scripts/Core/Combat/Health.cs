@@ -8,7 +8,7 @@ public class Health : NetworkBehaviour
     public NetworkVariable<int> CurrentHealth = new NetworkVariable<int>();
 
     private bool isDead;
-    private Action<Health> OnDie;
+    public Action<Health> OnDie;
 
     public override void OnNetworkSpawn()
     {
