@@ -2,7 +2,6 @@ using System;
 using Unity.Cinemachine;
 using Unity.Collections;
 using Unity.Netcode;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class TankPlayer : NetworkBehaviour
@@ -10,6 +9,7 @@ public class TankPlayer : NetworkBehaviour
     [Header("References")]
     [SerializeField] private CinemachineCamera followCamera;
     [field:SerializeField] public Health Health {get; private set;}
+    [field:SerializeField] public CoinWallet Wallet {get; private set;}
 
     [Header("Settings")]
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();

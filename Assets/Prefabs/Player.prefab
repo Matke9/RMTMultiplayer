@@ -513,6 +513,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   followCamera: {fileID: 7133314986992952299}
   <Health>k__BackingField: {fileID: 4940667270140455240}
+  <Wallet>k__BackingField: {fileID: 5440769666825350266}
   PlayerName:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
