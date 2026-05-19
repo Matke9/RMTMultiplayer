@@ -1,8 +1,10 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
@@ -10,16 +12,19 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClientGameManager
+public class ClientGameManager : IDisposable
 {
 
     private JoinAllocation allocation;
+    private NetworkClient networkClient;
+    
     private const string MenuSceneName = "Menu";
 
     public async Task<bool> InitAsync()
     {
         await UnityServices.InitializeAsync();
 
+        networkClient = new NetworkClient(NetworkManager.Singleton);
 
         if (await AuthenticationWrapper.DoAuth() == AuthState.Authenticated) {return true;}
 
@@ -46,7 +51,33 @@ public class ClientGameManager
         
         RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls"); //ovaj kod je malo drugaciji zbog unity verzije, ne radi po njihovom
         transport.SetRelayServerData(relayServerData);
+
+        //ovo sam ja stavio da napravi random ime ako ne uneses pravo
+        string userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "");
+        if (string.IsNullOrEmpty(userName))
+        {
+            userName = "Player" + UnityEngine.Random.Range(0, 10000);
+            PlayerPrefs.SetString(NameSelector.PlayerNameKey, userName);
+        }
+
+        UserData userData = new UserData()
+        {
+            userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "??"),
+            userAuthId = AuthenticationService.Instance.PlayerId
+            
+        };
+        string payload = JsonUtility.ToJson(userData);
+        byte[] payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+        
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes;
+        
         
         NetworkManager.Singleton.StartClient();
+    }
+
+    public void Dispose()
+    {
+        networkClient?.Dispose();
+        
     }
 }
