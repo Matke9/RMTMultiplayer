@@ -458,7 +458,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 259605357467725738}
   playerCollider: {fileID: 2270087643824095262}
   projectileSpeed: 20
-  fireRate: 1
+  fireRate: 1.6
   muzzleFlashDuration: 0.1
   costToFire: 5
 --- !u!114 &4940667270140455240
@@ -493,6 +493,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinWallet
   ShowTopMostFoldoutHeaderGroup: 1
+  health: {fileID: 4940667270140455240}
+  coinPrefab: {fileID: 4336626847094442187, guid: 99e7a9b9bd2736d4a99ba02d3906261f, type: 3}
+  coinSpread: 3
+  bountyPercentage: 50
+  bountyCoinCount: 10
+  minBountyCoinValue: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
   totalCoins:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
