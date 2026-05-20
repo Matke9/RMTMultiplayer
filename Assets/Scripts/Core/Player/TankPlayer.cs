@@ -2,17 +2,20 @@ using System;
 using Unity.Cinemachine;
 using Unity.Collections;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankPlayer : NetworkBehaviour
 {
     [Header("References")]
     [SerializeField] private CinemachineCamera followCamera;
+    [SerializeField] private SpriteRenderer minimapIconRenderer;
     [field:SerializeField] public Health Health {get; private set;}
     [field:SerializeField] public CoinWallet Wallet {get; private set;}
 
     [Header("Settings")]
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
+    [SerializeField] private Color ownerColor;
     
     public static event Action<TankPlayer> OnPlayerSpawned;
     public static event Action<TankPlayer> OnPlayerDespawned;
@@ -21,7 +24,10 @@ public class TankPlayer : NetworkBehaviour
     {
         if (IsServer)
         {
-            //Deo iz respawninga
+            UserData userData = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
+
+            PlayerName.Value = userData.userName;
+
             OnPlayerSpawned?.Invoke(this);
         }
 
@@ -30,6 +36,7 @@ public class TankPlayer : NetworkBehaviour
         {
             followCamera.Priority = 100;
             followCamera.Prioritize();
+            minimapIconRenderer.color = ownerColor;
         }
     }
 

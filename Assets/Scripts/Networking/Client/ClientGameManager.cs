@@ -80,4 +80,9 @@ public class ClientGameManager : IDisposable
         networkClient?.Dispose();
         
     }
+
+    public void Disconnect()
+    {
+        networkClient.Disconnect();
+    }
 }
