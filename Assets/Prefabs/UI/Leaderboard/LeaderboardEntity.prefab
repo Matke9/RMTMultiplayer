@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeaderBoardEntityDisplay
   displayText: {fileID: 4722981182583285671}
-  myColor: {r: 0.09803922, g: 0.8980392, b: 0.15294118, a: 0}
+  myColor: {r: 0, g: 1, b: 0.06862736, a: 1}
