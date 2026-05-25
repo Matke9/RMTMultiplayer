@@ -39,6 +39,7 @@ public class HostGameManager : IDisposable
         {
             joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log($"Join Code: {joinCode}");
+            GameHUD.SetLobbyCode(joinCode);
         }
         catch (Exception ex)
         {

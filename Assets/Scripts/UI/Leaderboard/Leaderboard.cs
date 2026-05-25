@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Leaderboard : NetworkBehaviour
     [SerializeField] private int entitiesToDisplay = 7;
     
     private NetworkList<LeaderboardEntityState> leaderboardEntities;
-    private List<LeaderBoardEntityDisplay> entityDisplays = new List<LeaderBoardEntityDisplay>();
+    private List<LeaderBoardEntityDisplay> entityDisplays = new();
     
     private void Awake()
     {

@@ -41,6 +41,7 @@ public class ClientGameManager : IDisposable
         try
         {
             allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+            GameHUD.SetLobbyCode(joinCode);
         }
         catch (Exception e)
         {
