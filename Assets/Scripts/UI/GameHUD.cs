@@ -8,6 +8,7 @@ public class GameHUD : MonoBehaviour
         if (NetworkManager.Singleton.IsHost)
         {
             HostSingleton.Instance.GameManager.Shutdown();
-        }
+        } 
+        ClientSingleton.Instance.GameManager.Disconnect();
     }
 }
