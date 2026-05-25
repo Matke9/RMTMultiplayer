@@ -49,7 +49,12 @@ public class ClientGameManager : IDisposable
         }
         UnityTransport transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
         
-        RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls"); //ovaj kod je malo drugaciji zbog unity verzije, ne radi po njihovom
+#if UNITY_WEBGL && !UNITY_EDITOR
+        RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "wss");
+        transport.UseWebSockets = true;
+#else
+        RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls");
+#endif
         transport.SetRelayServerData(relayServerData);
 
         //ovo sam ja stavio da napravi random ime ako ne uneses pravo
